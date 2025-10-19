@@ -11,6 +11,43 @@ body {
   align-items: start;
 }
 
+/* Setup screen */
+#setupScreen {
+  grid-column: span 2;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#setupScreen input,
+#setupScreen select {
+  display: block;
+  width: 100%;
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+#setupScreen button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Match screen layout */
+#matchScreen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  justify-items: center;
+  align-items: start;
+}
+
 /* Scoreboard styling */
 .scoreboard {
   background-color: #fff;
@@ -28,8 +65,22 @@ body {
 }
 
 .scoreboard p {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+/* Dart inputs */
+.dart-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   margin: 1rem 0;
+}
+
+.dart-inputs input {
+  width: 60px;
+  font-size: 1rem;
+  text-align: center;
 }
 
 /* Buttons */
@@ -54,24 +105,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Controls section */
-.controls {
-  grid-column: span 2;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-label {
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-select {
-  font-size: 1rem;
-  padding: 0.5rem;
-  margin-right: 1rem;
-}
-
 /* Win/lose feedback */
 .has-text-success {
   color: green;
@@ -83,24 +116,59 @@ select {
 
 /* Responsive tweaks */
 @media (max-width: 600px) {
-  body {
+  body,
+  #matchScreen {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .controls {
+  .scoreboard {
+    max-width: 100%;
+  }
+
+  #setupScreen {
     grid-column: span 1;
   }
 }
-.dart-inputs {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+
+/* Theme: Dartboard */
+body.dartboard {
+  background-color: #222;
+  color: #eee;
 }
 
-.dart-inputs input {
-  width: 60px;
-  font-size: 1rem;
-  text-align: center;
+body.dartboard .scoreboard {
+  background-color: #333;
+  border-color: #00ff00;
+}
+
+body.dartboard button {
+  background-color: #ff0000;
+}
+
+/* Theme: Football Club Red/White */
+body.club-red {
+  background-color: #fff0f0;
+}
+
+body.club-red .scoreboard {
+  border-color: #cc0000;
+}
+
+body.club-red button {
+  background-color: #cc0000;
+}
+
+/* Theme: Football Club Blue/Yellow */
+body.club-blue {
+  background-color: #f0f8ff;
+}
+
+body.club-blue .scoreboard {
+  border-color: #0044cc;
+}
+
+body.club-blue button {
+  background-color: #ffcc00;
+  color: #0044cc;
 }
