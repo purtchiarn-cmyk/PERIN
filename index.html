@@ -6,31 +6,27 @@
   <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-  <div class="scoreboard" id="player1">
-    <h2 id="p1Name">Home</h2>
-    <p>Score: <span id="p1Score">0</span></p>
-    <p>Legs Won: <span id="p1Legs">0</span></p>
-    <div class="dart-inputs">
-      <input type="number" id="p1Dart1" placeholder="Dart 1">
-      <input type="number" id="p1Dart2" placeholder="Dart 2">
-      <input type="number" id="p1Dart3" placeholder="Dart 3">
-    </div>
-    <button id="p1Submit">Submit Turn</button>
-  </div>
+  <!-- Setup Screen -->
+  <div id="setupScreen">
+    <h1>Start a New Match</h1>
+    <input type="text" id="p1NameInput" placeholder="Player 1 (Home)">
+    <input type="text" id="p2NameInput" placeholder="Player 2 (Away)">
 
-  <div class="scoreboard" id="player2">
-    <h2 id="p2Name">Away</h2>
-    <p>Score: <span id="p2Score">0</span></p>
-    <p>Legs Won: <span id="p2Legs">0</span></p>
-    <div class="dart-inputs">
-      <input type="number" id="p2Dart1" placeholder="Dart 1">
-      <input type="number" id="p2Dart2" placeholder="Dart 2">
-      <input type="number" id="p2Dart3" placeholder="Dart 3">
-    </div>
-    <button id="p2Submit">Submit Turn</button>
-  </div>
+    <label for="starter">Who starts first?</label>
+    <select id="starter">
+      <option value="p1">Player 1 (Home)</option>
+      <option value="p2">Player 2 (Away)</option>
+      <option value="bull">Closest to Bull (decide later)</option>
+    </select>
 
-  <div class="controls">
+    <label for="theme">Theme:</label>
+    <select id="theme">
+      <option value="default">Default</option>
+      <option value="dartboard">Dartboard Colors</option>
+      <option value="club-red">Football Club: Red/White</option>
+      <option value="club-blue">Football Club: Blue/Yellow</option>
+    </select>
+
     <label for="playto">Play to:</label>
     <select id="playto">
       <option value="301">301</option>
@@ -46,7 +42,38 @@
       <option value="7">7</option>
     </select>
 
-    <button id="reset">Reset Match</button>
+    <button id="startMatch">Start Match</button>
+  </div>
+
+  <!-- Match Screen -->
+  <div id="matchScreen" style="display: none;">
+    <div class="scoreboard" id="player1">
+      <h2 id="p1Name">Home</h2>
+      <p>Score: <span id="p1Score">0</span></p>
+      <p>Legs Won: <span id="p1Legs">0</span></p>
+      <div class="dart-inputs">
+        <input type="number" id="p1Dart1" placeholder="Dart 1">
+        <input type="number" id="p1Dart2" placeholder="Dart 2">
+        <input type="number" id="p1Dart3" placeholder="Dart 3">
+      </div>
+      <button id="p1Submit">Submit Turn</button>
+    </div>
+
+    <div class="scoreboard" id="player2">
+      <h2 id="p2Name">Away</h2>
+      <p>Score: <span id="p2Score">0</span></p>
+      <p>Legs Won: <span id="p2Legs">0</span></p>
+      <div class="dart-inputs">
+        <input type="number" id="p2Dart1" placeholder="Dart 1">
+        <input type="number" id="p2Dart2" placeholder="Dart 2">
+        <input type="number" id="p2Dart3" placeholder="Dart 3">
+      </div>
+      <button id="p2Submit">Submit Turn</button>
+    </div>
+
+    <div class="controls">
+      <button id="reset">Reset Match</button>
+    </div>
   </div>
 
   <script src="script.js" defer></script>
