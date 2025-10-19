@@ -1,92 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Darts Scorer</title>
-  <link rel="stylesheet" href="Styles.css">
-</head>
-<body>
-  <!-- Setup Screen -->
-  <main id="setupScreen" role="region" aria-label="Match Setup">
-    <h1>Start a New Match</h1>
-    <input type="text" id="p1NameInput" placeholder="Player 1 (Home)" aria-label="Player 1 name">
-    <input type="text" id="p2NameInput" placeholder="Player 2 (Away)" aria-label="Player 2 name">
+<section id="dartInputGrid">
+  <h3>Select Dart Slot:</h3>
+  <div class="dart-slots">
+    <button class="dart-slot" data-dart="1">Dart 1</button>
+    <button class="dart-slot" data-dart="2">Dart 2</button>
+    <button class="dart-slot" data-dart="3">Dart 3</button>
+  </div>
 
-    <label for="starter">Who starts first?</label>
-    <select id="starter" aria-label="Starter selection">
-      <option value="p1">Player 1 (Home)</option>
-      <option value="p2">Player 2 (Away)</option>
-      <option value="bull">Closest to Bull (decide later)</option>
-    </select>
+  <h3>Select Score:</h3>
+  <table class="dart-grid">
+    <tr>
+      <th>Double</th>
+      <td><button class="score-btn" data-type="double" data-value="1">1</button></td>
+      <td><button class="score-btn" data-type="double" data-value="2">2</button></td>
+      <td><button class="score-btn" data-type="double" data-value="3">3</button></td>
+      <td><button class="score-btn" data-type="double" data-value="4">4</button></td>
+    </tr>
+    <tr>
+      <th>Treble</th>
+      <td><button class="score-btn" data-type="treble" data-value="5">5</button></td>
+      <td><button class="score-btn" data-type="treble" data-value="6">6</button></td>
+      <td><button class="score-btn" data-type="treble" data-value="7">7</button></td>
+      <td><button class="score-btn" data-type="treble" data-value="8">8</button></td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td><button class="score-btn" data-type="flat" data-value="9">9</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="10">10</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="11">11</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="12">12</button></td>
+    </tr>
+    <tr>
+      <th>Bull</th>
+      <td><button class="score-btn" data-type="flat" data-value="13">13</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="14">14</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="15">15</button></td>
+      <td><button class="score-btn" data-type="flat" data-value="16">16</button></td>
+    </tr>
+    <tr>
+      <th>No Score</th>
+      <td><button class="score-btn" data-type="none" data-value="17">17</button></td>
+      <td><button class="score-btn" data-type="none" data-value="18">18</button></td>
+      <td><button class="score-btn" data-type="none" data-value="19">19</button></td>
+      <td><button class="score-btn" data-type="none" data-value="20">20</button></td>
+    </tr>
+  </table>
 
-    <label for="theme">Theme:</label>
-    <select id="theme" aria-label="Theme selection">
-      <option value="default">Default</option>
-      <option value="dartboard">Dartboard Colors</option>
-      <option value="club-red">Football Club: Red/White</option>
-      <option value="club-blue">Football Club: Blue/Yellow</option>
-    </select>
-
-    <label for="playto">Play to:</label>
-    <select id="playto" aria-label="Play to score">
-      <option value="301">301</option>
-      <option value="501">501</option>
-      <option value="701">701</option>
-    </select>
-
-    <label for="bestof">Best of:</label>
-    <select id="bestof" aria-label="Best of legs">
-      <option value="1">1</option>
-      <option value="3">3</option>
-      <option value="5">5</option>
-      <option value="7">7</option>
-    </select>
-
-    <button id="startMatch" aria-label="Start Match">Start Match</button>
-  </main>
-
-  <!-- Match Screen -->
-  <main id="matchScreen" style="display: none;" role="region" aria-label="Match Interface">
-    <section class="scoreboard" id="player1" aria-label="Player 1 scoreboard">
-      <h2 id="p1Name">Home</h2>
-      <p>Score: <span id="p1Score">0</span></p>
-      <p>Legs Won: <span id="p1Legs">0</span></p>
-      <button id="p1Submit" aria-label="Submit Turn for Player 1">Submit Turn</button>
-    </section>
-
-    <section class="scoreboard" id="player2" aria-label="Player 2 scoreboard">
-      <h2 id="p2Name">Away</h2>
-      <p>Score: <span id="p2Score">0</span></p>
-      <p>Legs Won: <span id="p2Legs">0</span></p>
-      <button id="p2Submit" aria-label="Submit Turn for Player 2">Submit Turn</button>
-    </section>
-
-    <section id="dartGrid" aria-label="Dart Input Grid">
-      <h3 id="turnIndicator">Current Turn: Home</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Dart 1</th><th>Dart 2</th><th>Dart 3</th><th>Dart 4</th><th>Dart 5</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="5">Select from: 1–20, Double, Treble, 25, Bull, No Score</td></tr>
-          <tr>
-            <td><input type="text" class="dartCell" aria-label="Dart 1 input"></td>
-            <td><input type="text" class="dartCell" aria-label="Dart 2 input"></td>
-            <td><input type="text" class="dartCell" aria-label="Dart 3 input"></td>
-            <td><input type="text" class="dartCell" aria-label="Dart 4 input"></td>
-            <td><input type="text" class="dartCell" aria-label="Dart 5 input"></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <div class="controls">
-      <button id="reset" aria-label="Reset Match">Reset Match</button>
-    </div>
-  </main>
-
-  <script src="script.js" defer></script>
-</body>
-</html>
+  <button id="submitTurn">Submit Turn</button>
+</section>
