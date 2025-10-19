@@ -1,17 +1,17 @@
 const player1 = {
     score: 0,
-    button: document.querySelector('#p1Button'),
-    display: document.querySelector('#p1Display')
+    button: document.getElementById('p1Button'),
+    display: document.getElementById('p1Display')
 };
 
 const player2 = {
     score: 0,
-    button: document.querySelector('#p2Button'),
-    display: document.querySelector('#p2Display')
+    button: document.getElementById('p2Button'),
+    display: document.getElementById('p2Display')
 };
 
-const resetButton = document.querySelector('#reset');
-const winningScoreSelect = document.querySelector('#playto');
+const resetButton = document.getElementById('reset');
+const winningScoreSelect = document.getElementById('playto');
 
 let winningScore = 3;
 let isGameOver = false;
@@ -30,13 +30,8 @@ function updateScores(player, opponent) {
     }
 }
 
-player1.button.addEventListener('click', function () {
-    updateScores(player1, player2);
-});
-
-player2.button.addEventListener('click', function () {
-    updateScores(player2, player1);
-});
+player1.button.addEventListener('click', () => updateScores(player1, player2));
+player2.button.addEventListener('click', () => updateScores(player2, player1));
 
 winningScoreSelect.addEventListener('change', function () {
     winningScore = parseInt(this.value);
