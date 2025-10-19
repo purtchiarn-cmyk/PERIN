@@ -7,20 +7,20 @@
 </head>
 <body>
   <!-- Setup Screen -->
-  <div id="setupScreen">
+  <main id="setupScreen" role="region" aria-label="Match Setup">
     <h1>Start a New Match</h1>
-    <input type="text" id="p1NameInput" placeholder="Player 1 (Home)">
-    <input type="text" id="p2NameInput" placeholder="Player 2 (Away)">
+    <input type="text" id="p1NameInput" placeholder="Player 1 (Home)" aria-label="Player 1 name">
+    <input type="text" id="p2NameInput" placeholder="Player 2 (Away)" aria-label="Player 2 name">
 
     <label for="starter">Who starts first?</label>
-    <select id="starter">
+    <select id="starter" aria-label="Starter selection">
       <option value="p1">Player 1 (Home)</option>
       <option value="p2">Player 2 (Away)</option>
       <option value="bull">Closest to Bull (decide later)</option>
     </select>
 
     <label for="theme">Theme:</label>
-    <select id="theme">
+    <select id="theme" aria-label="Theme selection">
       <option value="default">Default</option>
       <option value="dartboard">Dartboard Colors</option>
       <option value="club-red">Football Club: Red/White</option>
@@ -28,53 +28,64 @@
     </select>
 
     <label for="playto">Play to:</label>
-    <select id="playto">
+    <select id="playto" aria-label="Play to score">
       <option value="301">301</option>
       <option value="501">501</option>
       <option value="701">701</option>
     </select>
 
     <label for="bestof">Best of:</label>
-    <select id="bestof">
+    <select id="bestof" aria-label="Best of legs">
       <option value="1">1</option>
       <option value="3">3</option>
       <option value="5">5</option>
       <option value="7">7</option>
     </select>
 
-    <button id="startMatch">Start Match</button>
-  </div>
+    <button id="startMatch" aria-label="Start Match">Start Match</button>
+  </main>
 
   <!-- Match Screen -->
-  <div id="matchScreen" style="display: none;">
-    <div class="scoreboard" id="player1">
+  <main id="matchScreen" style="display: none;" role="region" aria-label="Match Interface">
+    <section class="scoreboard" id="player1" aria-label="Player 1 scoreboard">
       <h2 id="p1Name">Home</h2>
       <p>Score: <span id="p1Score">0</span></p>
       <p>Legs Won: <span id="p1Legs">0</span></p>
-      <div class="dart-inputs">
-        <input type="number" id="p1Dart1" placeholder="Dart 1">
-        <input type="number" id="p1Dart2" placeholder="Dart 2">
-        <input type="number" id="p1Dart3" placeholder="Dart 3">
-      </div>
-      <button id="p1Submit">Submit Turn</button>
-    </div>
+      <button id="p1Submit" aria-label="Submit Turn for Player 1">Submit Turn</button>
+    </section>
 
-    <div class="scoreboard" id="player2">
+    <section class="scoreboard" id="player2" aria-label="Player 2 scoreboard">
       <h2 id="p2Name">Away</h2>
       <p>Score: <span id="p2Score">0</span></p>
       <p>Legs Won: <span id="p2Legs">0</span></p>
-      <div class="dart-inputs">
-        <input type="number" id="p2Dart1" placeholder="Dart 1">
-        <input type="number" id="p2Dart2" placeholder="Dart 2">
-        <input type="number" id="p2Dart3" placeholder="Dart 3">
-      </div>
-      <button id="p2Submit">Submit Turn</button>
-    </div>
+      <button id="p2Submit" aria-label="Submit Turn for Player 2">Submit Turn</button>
+    </section>
+
+    <section id="dartGrid" aria-label="Dart Input Grid">
+      <h3 id="turnIndicator">Current Turn: Home</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Dart 1</th><th>Dart 2</th><th>Dart 3</th><th>Dart 4</th><th>Dart 5</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="5">Select from: 1–20, Double, Treble, 25, Bull, No Score</td></tr>
+          <tr>
+            <td><input type="text" class="dartCell" aria-label="Dart 1 input"></td>
+            <td><input type="text" class="dartCell" aria-label="Dart 2 input"></td>
+            <td><input type="text" class="dartCell" aria-label="Dart 3 input"></td>
+            <td><input type="text" class="dartCell" aria-label="Dart 4 input"></td>
+            <td><input type="text" class="dartCell" aria-label="Dart 5 input"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
     <div class="controls">
-      <button id="reset">Reset Match</button>
+      <button id="reset" aria-label="Reset Match">Reset Match</button>
     </div>
-  </div>
+  </main>
 
   <script src="script.js" defer></script>
 </body>
