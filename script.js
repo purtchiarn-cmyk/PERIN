@@ -1,58 +1,56 @@
-// DOM elements
-const scoreInput = document.getElementById("score-input");
-const submitTurn = document.getElementById("submit-turn");
-const undoTurn = document.getElementById("undo-turn");
-const bustAlert = document.getElementById("bust-alert");
-
-const playerA = document.getElementById("player-a");
-const playerB = document.getElementById("player-b");
-
-let scores = {
-  A: 501,
-  B: 501,
+const player1 = {
+    score: 0,
+    button: document.querySelector('#p1Button'),
+    display: document.querySelector('#p1Display')
 };
 
-let currentPlayer = "A";
-let history = [];
+const player2 = {
+    score: 0,
+    button: document.querySelector('#p2Button'),
+    display: document.querySelector('#p2Display')
+};
 
-// Update scoreboard
-function updateDisplay() {
-  playerA.querySelector(".score").textContent = scores.A;
-  playerB.querySelector(".score").textContent = scores.B;
+const resetButton = document.querySelector('#reset');
+const winningScoreSelect = document.querySelector('#playto');
+
+let winningScore = 3;
+let isGameOver = false;
+
+function updateScores(player, opponent) {
+    if (!isGameOver) {
+        player.score += 1;
+        if (player.score === winningScore) {
+            isGameOver = true;
+            player.display.classList.add('has-text-success');
+            opponent.display.classList.add('has-text-danger');
+            player.button.disabled = true;
+            opponent.button.disabled = true;
+        }
+        player.display.textContent = player.score;
+    }
 }
 
-// Handle turn submission
-submitTurn.addEventListener("click", () => {
-  const input = parseInt(scoreInput.value, 10);
-  if (isNaN(input) || input < 0 || input > 180) return;
-
-  const currentScore = scores[currentPlayer];
-  const newScore = currentScore - input;
-
-  if (newScore < 0) {
-    bustAlert.hidden = false;
-    return;
-  }
-
-  bustAlert.hidden = true;
-  history.push({ player: currentPlayer, score: input, previous: currentScore });
-  scores[currentPlayer] = newScore;
-
-  // Switch player
-  currentPlayer = currentPlayer === "A" ? "B" : "A";
-  scoreInput.value = "";
-  updateDisplay();
+player1.button.addEventListener('click', function () {
+    updateScores(player1, player2);
 });
 
-// Undo last turn
-undoTurn.addEventListener("click", () => {
-  const last = history.pop();
-  if (!last) return;
-
-  scores[last.player] = last.previous;
-  currentPlayer = last.player;
-  bustAlert.hidden = true;
-  updateDisplay();
+player2.button.addEventListener('click', function () {
+    updateScores(player2, player1);
 });
-// Initial display
-updateDisplay();
+
+winningScoreSelect.addEventListener('change', function () {
+    winningScore = parseInt(this.value);
+    reset();
+});
+
+resetButton.addEventListener('click', reset);
+
+function reset() {
+    isGameOver = false;
+    for (let p of [player1, player2]) {
+        p.score = 0;
+        p.display.textContent = 0;
+        p.display.classList.remove('has-text-success', 'has-text-danger');
+        p.button.disabled = false;
+    }
+}
