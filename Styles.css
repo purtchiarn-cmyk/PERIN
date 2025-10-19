@@ -92,3 +92,15 @@ select {
     grid-column: span 1;
   }
 }
+.dart-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dart-inputs input {
+  width: 60px;
+  font-size: 1rem;
+  text-align: center;
+}
