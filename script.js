@@ -1,29 +1,43 @@
-let scores = [501, 501];
-let history = [[], []];
+document.getElementById("startMatch").addEventListener("click", () => {
+  const name1 = document.getElementById("player1Name").value || "Player 1";
+  const name2 = document.getElementById("player2Name").value || "Player 2";
+  const startingScore = parseInt(document.getElementById("startingScore").value);
+  const bullWinner = parseInt(document.getElementById("bullWinner").value);
 
-function updateDisplay() {
-  document.getElementById("score0").textContent = scores[0];
-  document.getElementById("score1").textContent = scores[1];
-}
+  // Initialize scores and history
+  scores = [startingScore, startingScore];
+  history = [[], []];
 
-function subtractScore(playerIndex, amount) {
-  if (scores[playerIndex] >= amount) {
-    history[playerIndex].push(scores[playerIndex]);
-    scores[playerIndex] -= amount;
-    updateDisplay();
-  }
-}
+  // Build scoreboard dynamically
+  const gameDiv = document.getElementById("game");
+  gameDiv.innerHTML = `
+    <div class="scoreboard">
+      <div class="player">
+        <h2>${name1}</h2>
+        <div class="score" id="score0">${startingScore}</div>
+        <input type="number" id="input0" placeholder="Enter score">
+        <div class="controls">
+          <button id="subtract0">Submit</button>
+          <button id="undo0">Undo</button>
+        </div>
+      </div>
+      <div class="player">
+        <h2>${name2}</h2>
+        <div class="score" id="score1">${startingScore}</div>
+        <input type="number" id="input1" placeholder="Enter score">
+        <div class="controls">
+          <button id="subtract1">Submit</button>
+          <button id="undo1">Undo</button>
+        </div>
+      </div>
+    </div>
+  `;
 
-function undo(playerIndex) {
-  if (history[playerIndex].length > 0) {
-    scores[playerIndex] = history[playerIndex].pop();
-    updateDisplay();
-  }
-}
+  // Hide setup, show game
+  document.getElementById("setup").style.display = "none";
+  gameDiv.style.display = "flex";
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateDisplay();
-
+  // Rebind event listeners
   document.getElementById("subtract0").addEventListener("click", () => {
     const value = parseInt(document.getElementById("input0").value);
     subtractScore(0, value);
