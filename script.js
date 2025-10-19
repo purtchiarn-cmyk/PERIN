@@ -1,51 +1,69 @@
 const player1 = {
     score: 0,
-    button: document.getElementById('p1Button'),
-    display: document.getElementById('p1Display')
+    scoreDisplay: document.getElementById('p1Score'),
+    dartInputs: [
+        document.getElementById('p1Dart1'),
+        document.getElementById('p1Dart2'),
+        document.getElementById('p1Dart3')
+    ],
+    submitButton: document.getElementById('p1Submit')
 };
 
 const player2 = {
     score: 0,
-    button: document.getElementById('p2Button'),
-    display: document.getElementById('p2Display')
+    scoreDisplay: document.getElementById('p2Score'),
+    dartInputs: [
+        document.getElementById('p2Dart1'),
+        document.getElementById('p2Dart2'),
+        document.getElementById('p2Dart3')
+    ],
+    submitButton: document.getElementById('p2Submit')
 };
 
+const playToSelect = document.getElementById('playto');
 const resetButton = document.getElementById('reset');
-const winningScoreSelect = document.getElementById('playto');
+let playToScore = parseInt(playToSelect.value);
+let gameOver = false;
 
-let winningScore = 3;
-let isGameOver = false;
+function submitTurn(player) {
+    if (gameOver) return;
 
-function updateScores(player, opponent) {
-    if (!isGameOver) {
-        player.score += 1;
-        if (player.score === winningScore) {
-            isGameOver = true;
-            player.display.classList.add('has-text-success');
-            opponent.display.classList.add('has-text-danger');
-            player.button.disabled = true;
-            opponent.button.disabled = true;
+    let turnTotal = 0;
+    for (let input of player.dartInputs) {
+        const val = parseInt(input.value);
+        if (!isNaN(val)) {
+            turnTotal += val;
         }
-        player.display.textContent = player.score;
+        input.value = ''; // Clear input
+    }
+
+    player.score += turnTotal;
+    player.scoreDisplay.textContent = player.score;
+
+    if (player.score >= playToScore) {
+        gameOver = true;
+        player.scoreDisplay.classList.add('has-text-success');
     }
 }
 
-player1.button.addEventListener('click', () => updateScores(player1, player2));
-player2.button.addEventListener('click', () => updateScores(player2, player1));
+player1.submitButton.addEventListener('click', () => submitTurn(player1));
+player2.submitButton.addEventListener('click', () => submitTurn(player2));
 
-winningScoreSelect.addEventListener('change', function () {
-    winningScore = parseInt(this.value);
-    reset();
+playToSelect.addEventListener('change', () => {
+    playToScore = parseInt(playToSelect.value);
+    resetGame();
 });
 
-resetButton.addEventListener('click', reset);
+resetButton.addEventListener('click', resetGame);
 
-function reset() {
-    isGameOver = false;
+function resetGame() {
+    gameOver = false;
     for (let p of [player1, player2]) {
         p.score = 0;
-        p.display.textContent = 0;
-        p.display.classList.remove('has-text-success', 'has-text-danger');
-        p.button.disabled = false;
+        p.scoreDisplay.textContent = 0;
+        p.scoreDisplay.classList.remove('has-text-success');
+        for (let input of p.dartInputs) {
+            input.value = '';
+        }
     }
 }
