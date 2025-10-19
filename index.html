@@ -1,49 +1,36 @@
-<section id="dartInputGrid">
-  <h3>Select Dart Slot:</h3>
-  <div class="dart-slots">
-    <button class="dart-slot" data-dart="1">Dart 1</button>
-    <button class="dart-slot" data-dart="2">Dart 2</button>
-    <button class="dart-slot" data-dart="3">Dart 3</button>
-  </div>
+<div id="setup" class="setup-container">
+  <h1>Darts Match Setup</h1>
 
-  <h3>Select Score:</h3>
-  <table class="dart-grid">
-    <tr>
-      <th>Double</th>
-      <td><button class="score-btn" data-type="double" data-value="1">1</button></td>
-      <td><button class="score-btn" data-type="double" data-value="2">2</button></td>
-      <td><button class="score-btn" data-type="double" data-value="3">3</button></td>
-      <td><button class="score-btn" data-type="double" data-value="4">4</button></td>
-    </tr>
-    <tr>
-      <th>Treble</th>
-      <td><button class="score-btn" data-type="treble" data-value="5">5</button></td>
-      <td><button class="score-btn" data-type="treble" data-value="6">6</button></td>
-      <td><button class="score-btn" data-type="treble" data-value="7">7</button></td>
-      <td><button class="score-btn" data-type="treble" data-value="8">8</button></td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td><button class="score-btn" data-type="flat" data-value="9">9</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="10">10</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="11">11</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="12">12</button></td>
-    </tr>
-    <tr>
-      <th>Bull</th>
-      <td><button class="score-btn" data-type="flat" data-value="13">13</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="14">14</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="15">15</button></td>
-      <td><button class="score-btn" data-type="flat" data-value="16">16</button></td>
-    </tr>
-    <tr>
-      <th>No Score</th>
-      <td><button class="score-btn" data-type="none" data-value="17">17</button></td>
-      <td><button class="score-btn" data-type="none" data-value="18">18</button></td>
-      <td><button class="score-btn" data-type="none" data-value="19">19</button></td>
-      <td><button class="score-btn" data-type="none" data-value="20">20</button></td>
-    </tr>
-  </table>
+  <label>
+    Player 1 Name:
+    <input type="text" id="player1Name" placeholder="Player 1">
+  </label>
 
-  <button id="submitTurn">Submit Turn</button>
-</section>
+  <label>
+    Player 2 Name:
+    <input type="text" id="player2Name" placeholder="Player 2">
+  </label>
+
+  <label>
+    Starting Score:
+    <select id="startingScore">
+      <option value="301">301</option>
+      <option value="501" selected>501</option>
+      <option value="701">701</option>
+    </select>
+  </label>
+
+  <label>
+    Closest to Bull:
+    <select id="bullWinner">
+      <option value="0">Player 1</option>
+      <option value="1">Player 2</option>
+    </select>
+  </label>
+
+  <button id="startMatch">Start Match</button>
+</div>
+
+<div id="game" class="container" style="display:none;">
+  <!-- Scoreboard and controls will go here -->
+</div>
