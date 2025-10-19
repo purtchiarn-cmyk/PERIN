@@ -1,46 +1,39 @@
-const setupScreen = document.getElementById('setupScreen');
-const matchScreen = document.getElementById('matchScreen');
-const startButton = document.getElementById('startMatch');
+let scores = [501, 501];
+let history = [[], []];
 
-const p1NameInput = document.getElementById('p1NameInput');
-const p2NameInput = document.getElementById('p2NameInput');
-const playToSelect = document.getElementById('playto');
-const bestOfSelect = document.getElementById('bestof');
-const starterSelect = document.getElementById('starter');
-const themeSelect = document.getElementById('theme');
+function updateDisplay() {
+  document.getElementById("score0").textContent = scores[0];
+  document.getElementById("score1").textContent = scores[1];
+}
 
-const p1NameLabel = document.getElementById('p1Name');
-const p2NameLabel = document.getElementById('p2Name');
+function subtractScore(playerIndex, amount) {
+  if (scores[playerIndex] >= amount) {
+    history[playerIndex].push(scores[playerIndex]);
+    scores[playerIndex] -= amount;
+    updateDisplay();
+  }
+}
 
-const player1 = {
-    score: 0,
-    legs: 0,
-    scoreDisplay: document.getElementById('p1Score'),
-    legsDisplay: document.getElementById('p1Legs'),
-    submitButton: document.getElementById('p1Submit'),
-    panel: document.getElementById('player1')
-};
+function undo(playerIndex) {
+  if (history[playerIndex].length > 0) {
+    scores[playerIndex] = history[playerIndex].pop();
+    updateDisplay();
+  }
+}
 
-const player2 = {
-    score: 0,
-    legs: 0,
-    scoreDisplay: document.getElementById('p2Score'),
-    legsDisplay: document.getElementById('p2Legs'),
-    submitButton: document.getElementById('p2Submit'),
-    panel: document.getElementById('player2')
-};
+document.addEventListener("DOMContentLoaded", () => {
+  updateDisplay();
 
-const resetButton = document.getElementById('reset');
-const dartGrid = document.getElementById('dartGrid');
-const dartInputs = document.querySelectorAll('.dartCell');
-const turnIndicator = document.getElementById('turnIndicator');
+  document.getElementById("subtract0").addEventListener("click", () => {
+    const value = parseInt(document.getElementById("input0").value);
+    subtractScore(0, value);
+  });
 
-let playToScore = 501;
-let bestOfLegs = 3;
-let legsNeededToWin = 2;
-let matchOver = false;
-let currentPlayer = player1;
+  document.getElementById("subtract1").addEventListener("click", () => {
+    const value = parseInt(document.getElementById("input1").value);
+    subtractScore(1, value);
+  });
 
-startButton.addEventListener('click', () => {
-    const p1Name = p1NameInput.value.trim() || "Home";
-    const p2Name = p2NameInput.value.trim() || "Away
+  document.getElementById("undo0").addEventListener("click", () => undo(0));
+  document.getElementById("undo1").addEventListener("click", () => undo(1));
+});
