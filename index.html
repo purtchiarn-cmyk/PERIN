@@ -1,44 +1,59 @@
-<div id="setup" class="setup-container">
-  <h1>Darts Match Setup</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darts Scorer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="setup" class="setup-container">
+    <h1>Darts Match Setup</h1>
 
-  <label>
-    Player 1 Name:
-    <input type="text" id="player1Name" placeholder="Player 1">
-  </label>
+    <label>
+      Player 1 Name:
+      <input type="text" id="player1Name" placeholder="P1 Home" />
+    </label>
 
-  <label>
-    Player 2 Name:
-    <input type="text" id="player2Name" placeholder="Player 2">
-  </label>
+    <label>
+      Player 2 Name:
+      <input type="text" id="player2Name" placeholder="P2 Away" />
+    </label>
 
-  <label>
-    Starting Score:
-    <select id="startingScore">
-      <option value="301">301</option>
-      <option value="501" selected>501</option>
-      <option value="701">701</option>
-    </select>
-  </label>
+    <label>
+      Starting Score:
+      <select id="startingScore">
+        <option value="301">301</option>
+        <option value="501" selected>501</option>
+        <option value="701">701</option>
+      </select>
+    </label>
+
+    <label>
+      Closest to Bull:
+      <select id="bullWinner">
+        <option value="0">Player 1</option>
+        <option value="1">Player 2</option>
+      </select>
+    </label>
+
+    <label>
+      Visual Style:
+      <select id="visualStyle">
+        <option value="default">Default</option>
+        <option value="highContrast">High Contrast</option>
+        <option value="largeFont">Large Font</option>
+        <option value="darkMode">Dark Mode</option>
+      </select>
+    </label>
+
+    <button id="startMatch">Start Match</button>
   </div>
-</div>
-  <div class="scoring-buttons" data-player="1">
-  <button data-score="25">25</button>
-  <button data-score="50">Bull</button>
-  <button data-score="0">No Score</button>
-  <button data-multiplier="2">Double</button>
-  <button data-multiplier="3">Treble</button>
+
+  <div id="game" class="container" style="display: none;">
+    <!-- Scoreboard and controls will be injected here -->
   </div>
-  <label>
-    Closest to Bull:
-    <select id="bullWinner">
-      <option value="0">Player 1</option>
-      <option value="1">Player 2</option>
-    </select>
-  </label>
 
-  <button id="startMatch">Start Match</button>
-</div>
-
-<div id="game" class="container" style="display:none;">
-  <!-- Scoreboard and controls will go here -->
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
