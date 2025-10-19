@@ -63,3 +63,24 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+.setup-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.setup-container label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.setup-container input,
+.setup-container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+}
