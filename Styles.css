@@ -1,212 +1,65 @@
-/* Base layout */
 body {
+  font-family: sans-serif;
+  background: #f9f9f9;
   margin: 0;
-  padding: 2rem;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  justify-items: center;
-  align-items: start;
+  padding: 1rem;
+  color: #333;
 }
 
-/* Setup screen */
-#setupScreen {
-  grid-column: span 2;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#setupScreen input,
-#setupScreen select {
-  display: block;
-  width: 100%;
-  margin: 0.5rem auto;
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-
-#setupScreen button {
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Match screen layout */
-#matchScreen {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  justify-items: center;
-  align-items: start;
-}
-
-/* Scoreboard styling */
 .scoreboard {
-  background-color: #fff;
-  border: 2px solid #444;
-  border-radius: 8px;
-  padding: 1.5rem;
+  display: flex;
+  justify-content: space-around;
   width: 100%;
-  max-width: 300px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.scoreboard h2 {
+  max-width: 600px;
   margin-bottom: 1rem;
 }
 
-.scoreboard p {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-}
-
-/* Dart inputs */
-.dart-inputs {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem 0;
-}
-
-.dart-inputs input {
-  width: 60px;
-  font-size: 1rem;
+.player {
+  flex: 1;
+  margin: 0 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   text-align: center;
 }
 
-/* Buttons */
-button {
-  font-size: 1rem;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  background-color: #0077cc;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.player h2 {
+  margin-top: 0;
 }
 
-button:hover:not(:disabled) {
+.score {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #0078d4;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
   background-color: #005fa3;
 }
 
 button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
-}
-
-/* Win/lose feedback */
-.has-text-success {
-  color: green;
-}
-
-.has-text-danger {
-  color: red;
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  body,
-  #matchScreen {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .scoreboard {
-    max-width: 100%;
-  }
-
-  #setupScreen {
-    grid-column: span 1;
-  }
-}
-
-/* Theme: Dartboard */
-body.dartboard {
-  background-color: #222;
-  color: #eee;
-}
-
-body.dartboard .scoreboard {
-  background-color: #333;
-  border-color: #00ff00;
-}
-
-body.dartboard button {
-  background-color: #ff0000;
-}
-
-/* Theme: Football Club Red/White */
-body.club-red {
-  background-color: #fff0f0;
-}
-
-body.club-red .scoreboard {
-  border-color: #cc0000;
-}
-
-body.club-red button {
-  background-color: #cc0000;
-}
-
-/* Theme: Football Club Blue/Yellow */
-body.club-blue {
-  background-color: #f0f8ff;
-}
-
-body.club-blue .scoreboard {
-  border-color: #0044cc;
-}
-
-body.club-blue button {
-  background-color: #ffcc00;
-  color: #0044cc;
-}
-#dartGrid {
-  grid-column: span 2;
-  margin-top: 2rem;
-  text-align: center;
-}
-
-#dartGrid table {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  border-collapse: collapse;
-}
-
-#dartGrid th,
-#dartGrid td {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  text-align: center;
-}
-
-.dartCell {
-  width: 80px;
-  font-size: 1rem;
-  text-align: center;
-}
-
-/* Glow effect for active player */
-.scoreboard.active {
-  box-shadow: 0 0 10px 3px #00ccff;
-  border-color: #00ccff;
-}
-
-/* Turn indicator */
-#turnIndicator {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #333;
 }
