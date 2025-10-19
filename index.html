@@ -1,59 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Darts Scorer</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
+  <div class="scoreboard" id="player1">
+    <h2>Player 1</h2>
+    <p id="p1Display">0</p>
+    <button id="p1Button">+1</button>
+  </div>
 
-  <!-- Match Info Bar -->
-  <header class="match-info">
-    <div class="player-names">
-      <span class="player-a">Player A</span>
-      <span class="vs">vs</span>
-      <span class="player-b">Player B</span>
-    </div>
-    <div class="match-meta">
-      <span class="match-type">League Match</span>
-      <span class="leg-count">Leg 2 of 5</span>
-    </div>
-  </header>
+  <div class="scoreboard" id="player2">
+    <h2>Player 2</h2>
+    <p id="p2Display">0</p>
+    <button id="p2Button">+1</button>
+  </div>
 
-  <!-- Scoreboard -->
-  <section class="scoreboard">
-    <div class="player-score" id="player-a">
-      <h2>Player A</h2>
-      <p class="score">501</p>
-      <p class="3da">3DA: 45.2</p>
-    </div>
-    <div class="player-score" id="player-b">
-      <h2>Player B</h2>
-      <p class="score">501</p>
-      <p class="3da">3DA: 47.8</p>
-    </div>
-  </section>
+  <div class="controls">
+    <select id="playto">
+      <option value="3">Play to 3</option>
+      <option value="5">Play to 5</option>
+      <option value="7">Play to 7</option>
+    </select>
+    <button id="reset">Reset</button>
+  </div>
 
-  <!-- Turn Input Panel -->
-  <section class="turn-input">
-    <label for="score-input">Enter Score:</label>
-    <input type="number" id="score-input" name="score-input" />
-    <button id="submit-turn">Submit</button>
-    <button id="undo-turn">Undo</button>
-    <div class="alerts">
-      <span id="bust-alert" hidden>Bust!</span>
-    </div>
-  </section>
-
-  <!-- Bottom Controls -->
-  <footer class="match-controls">
-    <button id="end-match">End Match</button>
-    <button id="toggle-accessibility">A+</button>
-    <button id="toggle-mic">🎙️</button>
-  </footer>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
