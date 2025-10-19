@@ -8,7 +8,8 @@
 <body>
   <div class="scoreboard" id="player1">
     <h2 id="p1Name">Home</h2>
-    <p id="p1Score">0</p>
+    <p>Score: <span id="p1Score">0</span></p>
+    <p>Legs Won: <span id="p1Legs">0</span></p>
     <div class="dart-inputs">
       <input type="number" id="p1Dart1" placeholder="Dart 1">
       <input type="number" id="p1Dart2" placeholder="Dart 2">
@@ -19,7 +20,8 @@
 
   <div class="scoreboard" id="player2">
     <h2 id="p2Name">Away</h2>
-    <p id="p2Score">0</p>
+    <p>Score: <span id="p2Score">0</span></p>
+    <p>Legs Won: <span id="p2Legs">0</span></p>
     <div class="dart-inputs">
       <input type="number" id="p2Dart1" placeholder="Dart 1">
       <input type="number" id="p2Dart2" placeholder="Dart 2">
@@ -35,7 +37,16 @@
       <option value="501">501</option>
       <option value="701">701</option>
     </select>
-    <button id="reset">Reset</button>
+
+    <label for="bestof">Best of:</label>
+    <select id="bestof">
+      <option value="1">1</option>
+      <option value="3">3</option>
+      <option value="5">5</option>
+      <option value="7">7</option>
+    </select>
+
+    <button id="reset">Reset Match</button>
   </div>
 
   <script src="script.js" defer></script>
