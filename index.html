@@ -7,23 +7,33 @@
 </head>
 <body>
   <div class="scoreboard" id="player1">
-    <h2>Player 1</h2>
-    <p id="p1Display">0</p>
-    <button id="p1Button">+1</button>
+    <h2 id="p1Name">Home</h2>
+    <p id="p1Score">0</p>
+    <div class="dart-inputs">
+      <input type="number" id="p1Dart1" placeholder="Dart 1">
+      <input type="number" id="p1Dart2" placeholder="Dart 2">
+      <input type="number" id="p1Dart3" placeholder="Dart 3">
+    </div>
+    <button id="p1Submit">Submit Turn</button>
   </div>
 
   <div class="scoreboard" id="player2">
-    <h2>Player 2</h2>
-    <p id="p2Display">0</p>
-    <button id="p2Button">+1</button>
+    <h2 id="p2Name">Away</h2>
+    <p id="p2Score">0</p>
+    <div class="dart-inputs">
+      <input type="number" id="p2Dart1" placeholder="Dart 1">
+      <input type="number" id="p2Dart2" placeholder="Dart 2">
+      <input type="number" id="p2Dart3" placeholder="Dart 3">
+    </div>
+    <button id="p2Submit">Submit Turn</button>
   </div>
 
   <div class="controls">
     <label for="playto">Play to:</label>
     <select id="playto">
-      <option value="3">3</option>
-      <option value="5">5</option>
-      <option value="7">7</option>
+      <option value="301">301</option>
+      <option value="501">501</option>
+      <option value="701">701</option>
     </select>
     <button id="reset">Reset</button>
   </div>
