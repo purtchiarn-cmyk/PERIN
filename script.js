@@ -1,3 +1,17 @@
+const setupScreen = document.getElementById('setupScreen');
+const matchScreen = document.getElementById('matchScreen');
+const startButton = document.getElementById('startMatch');
+
+const p1NameInput = document.getElementById('p1NameInput');
+const p2NameInput = document.getElementById('p2NameInput');
+const playToSelect = document.getElementById('playto');
+const bestOfSelect = document.getElementById('bestof');
+const starterSelect = document.getElementById('starter');
+const themeSelect = document.getElementById('theme');
+
+const p1NameLabel = document.getElementById('p1Name');
+const p2NameLabel = document.getElementById('p2Name');
+
 const player1 = {
     score: 0,
     legs: 0,
@@ -24,14 +38,40 @@ const player2 = {
     submitButton: document.getElementById('p2Submit')
 };
 
-const playToSelect = document.getElementById('playto');
-const bestOfSelect = document.getElementById('bestof');
 const resetButton = document.getElementById('reset');
 
-let playToScore = parseInt(playToSelect.value);
-let bestOfLegs = parseInt(bestOfSelect.value);
-let legsNeededToWin = Math.ceil(bestOfLegs / 2);
+let playToScore = 501;
+let bestOfLegs = 3;
+let legsNeededToWin = 2;
 let matchOver = false;
+let starter = "p1";
+
+startButton.addEventListener('click', () => {
+    const p1Name = p1NameInput.value.trim() || "Home";
+    const p2Name = p2NameInput.value.trim() || "Away";
+
+    p1NameLabel.textContent = p1Name;
+    p2NameLabel.textContent = p2Name;
+
+    playToScore = parseInt(playToSelect.value);
+    bestOfLegs = parseInt(bestOfSelect.value);
+    legsNeededToWin = Math.ceil(bestOfLegs / 2);
+    starter = starterSelect.value;
+
+    const theme = themeSelect.value;
+    document.body.className = theme; // Apply theme class to body
+
+    setupScreen.style.display = "none";
+    matchScreen.style.display = "grid";
+
+    resetMatch();
+
+    if (starter === "bull") {
+        alert("Closest to Bull selected. Decide manually who starts.");
+    } else {
+        alert(`${starter === "p1" ? p1Name : p2Name} will start the match.`);
+    }
+});
 
 function submitTurn(player, opponent) {
     if (matchOver) return;
@@ -56,7 +96,7 @@ function submitTurn(player, opponent) {
             matchOver = true;
             player.scoreDisplay.classList.add('has-text-success');
             opponent.scoreDisplay.classList.add('has-text-danger');
-            alert(`${player === player1 ? "Home" : "Away"} wins the match!`);
+            alert(`${player === player1 ? p1NameLabel.textContent : p2NameLabel.textContent} wins the match!`);
         } else {
             resetLeg();
         }
@@ -76,10 +116,6 @@ function resetLeg() {
 
 function resetMatch() {
     matchOver = false;
-    playToScore = parseInt(playToSelect.value);
-    bestOfLegs = parseInt(bestOfSelect.value);
-    legsNeededToWin = Math.ceil(bestOfLegs / 2);
-
     for (let p of [player1, player2]) {
         p.score = 0;
         p.legs = 0;
@@ -94,11 +130,7 @@ function resetMatch() {
 
 player1.submitButton.addEventListener('click', () => submitTurn(player1, player2));
 player2.submitButton.addEventListener('click', () => submitTurn(player2, player1));
-playToSelect.addEventListener('change', () => {
-    playToScore = parseInt(playToSelect.value);
+resetButton.addEventListener('click', () => {
+    setupScreen.style.display = "block";
+    matchScreen.style.display = "none";
 });
-bestOfSelect.addEventListener('change', () => {
-    bestOfLegs = parseInt(bestOfSelect.value);
-    legsNeededToWin = Math.ceil(bestOfLegs / 2);
-});
-resetButton.addEventListener('click', resetMatch);
